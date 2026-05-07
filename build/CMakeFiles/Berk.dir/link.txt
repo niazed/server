@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/Berk.dir/link.d CMakeFiles/Berk.dir/src/Main.cpp.o -o Berk

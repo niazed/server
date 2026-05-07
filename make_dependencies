@@ -1,5 +1,4 @@
->=conan 2.19.1-1.1
 >=libgcrypt 1.12.2-1
 >=gcc 16.1.1
->=cmake 3.0.0
+>=cmake 3.5.0
 >=sqlite 3.53.0-2

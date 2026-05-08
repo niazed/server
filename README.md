@@ -59,4 +59,3 @@ Then you may do as you wish with the binary.
 # Credits
 - [express.hpp](https://github.com/SiLeader/express.hpp)
 - [WebKit](https://github.com/WebKit/WebKit) for the FindLibGcrypt.cmake
-- [filesystem](https://github.com/gulrak/filesystem/)

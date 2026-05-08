@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 project(Berk VERSION 0.1.0)
+
+# C++ stuff
+set_property(TARGET MyApp PROPERTY CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED On)
+
 # Stolen from https://community.gigperformer.com/t/getting-cmake-variables-from-c/17711
 set (PROJECT_VERSION "0.1.0")
 set (PROJECT_NAME "BerkServer")

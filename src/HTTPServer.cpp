@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void startup(express::Express app) {
+void startupHTTP(express::Express app) {
 
     cout << "Starting HTTP Server" << endl;
     app.get("/", [](const express::Request &req, express::Response &res) {

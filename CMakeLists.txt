@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
 project(Berk VERSION 0.1.0)
-add_executable(Berk 
+# Stolen from https://community.gigperformer.com/t/getting-cmake-variables-from-c/17711
+set (PROJECT_VERSION "0.1.0")
+set (PROJECT_NAME "BerkServer")
+set (PROJECT_TITLE "Berk Server")
+string(TIMESTAMP TODAY "%d/%m/%Y")
+set (PROJECT_BUILD_DATE ${TODAY})
+set (PROJECT_BUILD_NO "1")
+configure_file (version.h.in version.h) 
+add_executable(${PROJECT_NAME} 
 
     src/Main.cpp 
     src/HTTPServer.cpp
@@ -10,8 +18,11 @@ add_executable(Berk
 
 )
 
+# target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
 # flags to compiler
-set(CMAKE_CXX_FLAGS "-Wall -Werror ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-Wall -Wno-error -Wextra ${CMAKE_CXX_FLAGS}")
 
 
 find_package(SQLite3 REQUIRED)

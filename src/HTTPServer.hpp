@@ -5,6 +5,6 @@
 
 #define HTTPSERVER_HPP
 
-void startup(express::Express app);
+void startupHTTP(express::Express app);
 
 #endif

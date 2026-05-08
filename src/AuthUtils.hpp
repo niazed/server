@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #ifndef AUTHUTILS_HPP
 
 #define AUTHUTILS_HPP

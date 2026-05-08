@@ -8,7 +8,7 @@ void startupHTTP(express::Express app) {
     cout << "Starting HTTP Server" << endl;
     app.get("/", [](const express::Request &req, express::Response &res) {
         std::cout << "ok /" << std::endl;
-        res.end("ok");
+        res.end("Welcome to the Berk Server");
     });
 
     app.get("/parameters/:id/others/:other",

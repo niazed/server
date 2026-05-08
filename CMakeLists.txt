@@ -18,6 +18,8 @@ add_executable(${PROJECT_NAME}
     src/Main.cpp 
     src/HTTPServer.cpp
     src/HTTPServer.hpp
+    src/AuthUtils.cpp
+    src/AuthUtils.hpp
     src/express.hpp
 
 )
@@ -28,8 +30,10 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 # flags to compiler
 set(CMAKE_CXX_FLAGS "-Wall -Wno-error -Wextra ${CMAKE_CXX_FLAGS}")
 
-
+# shared
 find_package(SQLite3 REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+target_link_libraries(mytarget PRIVATE Qt6::Core)
  # /cmake dir
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")

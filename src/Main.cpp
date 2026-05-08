@@ -2,9 +2,11 @@
 #include "HTTPServer.hpp"
 #include <bits/stdc++.h>
 #include <version.h>
+#include <filesystem>
+#include <gcrypt.h>
 
 using namespace std;
-
+using namespace std::filesystem;
 void startHTTP() {
 
     express::Express app;
@@ -14,8 +16,12 @@ void startHTTP() {
 
 int main(int argc, char* argv[]) {
 
-    system("figlet BERK"); // I should integrate this so if the user for some reason doesn't have this installed (e.g. Windows Server)
+    system("echo BERK | figlet -f larry3d"); // I should integrate this so if the user doesn't have this installed
     cout << PROJECT_NAME << " v" << PROJECT_VERSION << " (build " << PROJECT_BUILD_NO << ")"<< endl;
+
+    cout << "Checking for config directory... ";
+
+    // Servers
     thread http(startHTTP);
     cout << "Hello!" << endl;
     bool commandLoop = true;

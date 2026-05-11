@@ -30,8 +30,8 @@ int main(int argc, char* argv[]) {
     // Interactive shell
     cout << ">";
     // Command registry
-    vector<Command> commands;
-    AddUserCommand auc;
+    // vector<Command> commands;
+    // AddUserCommand auc;
     // commands.push_back(auc);
     bool commandLoop = true;
     

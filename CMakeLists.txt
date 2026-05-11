@@ -21,7 +21,11 @@ add_executable(BerkServer
     src/FSUtils.cpp
     src/FSUtils.hpp
     src/Command.hpp
-    src/AddUserCommand.cpp
+    #
+    # Uncomment this when it works
+    # src/AddUserCommand.hpp
+    # src/AddUserCommand.cpp
+    #
     src/express.hpp
 
 )

@@ -12,9 +12,11 @@ class Command {
         std::vector<std::string> aliases;
         bool async;
 
-        void run(std::vector<std::string> args, std::vector<std::string> flags);
+        virtual void run(std::vector<std::string> args, std::vector<std::string> flags);
 
         Command(std::string name, std::vector<std::string> aliases, bool async);
+        std::string getName();
+        std::vector<std::string> getAliases();
 //   public:
 //     Command(const Command &) = default;
 //     Command(Command &&) = default;

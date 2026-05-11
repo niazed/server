@@ -1,13 +1,26 @@
 #include "Command.hpp"
 #include <iostream>
+#include <vector>
 
 
 using namespace std;
 
-class Command {
+Command::Command(string name, vector<string> aliases, bool async) {
 
-    public:
-        int run;
+    this->name = name;
+    this->aliases = aliases;
+    this->async = async;
 
 
-};
+}
+string Command::getName() {
+
+    return this->name;
+
+}
+
+vector<string> Command::getAliases() {
+
+    return this->aliases;
+
+}

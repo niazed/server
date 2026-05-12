@@ -24,6 +24,7 @@ add_executable(BerkServer
     src/json.hpp
     src/Settings.cpp
     src/Settings.hpp
+    src/Attachment.hpp
     #
     # Uncomment this when it works
     # src/AddUserCommand.hpp

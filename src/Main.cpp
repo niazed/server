@@ -30,9 +30,10 @@ int main(int argc, char* argv[]) {
     // Posted by fredoverflow
     // Retrieved 2026-05-12, License - CC BY-SA 3.0
 
-    vector<string> arguments(argv + 1, argv + argc);
+    vector<string> arguments(argv, argv + argc);
 
     cout << "Checking for filesystem..." << endl;
+    createDirIfNotExists(".crash");
     createDirIfNotExists("config");
     if(!fileExists("config/settings.json")) {
         json j = Settings::getDefaultSettings();
@@ -51,7 +52,7 @@ int main(int argc, char* argv[]) {
         target.append(".bat");
         useEchoOFF = true;
     #endif
-    #ifdef UNIX
+    #if defined(__unix__)
         target.append(".sh");
     #endif
     if (target == "restart") {
@@ -61,25 +62,28 @@ int main(int argc, char* argv[]) {
     }
     string yeah = "scripts/";
     yeah.append(target);
-    ofstream restartScript(yeah);
-    if(!restartScript.is_open()) {
+    ifstream IrestartScript(yeah);
+
+    if(!IrestartScript.is_open()) {
 
         cout << "[WARN] You do not have a " << target << ", would you like to create one using the arguments you passed on here? You can ignore this check by entering 'i' to turn on 'ignore-restart-script-not-found' [y/N/i] ";
         string result;
         cin >> result;
         if(tolower(result[0]) == 'y') {
-
+            ofstream restartScript(yeah);
             if(useEchoOFF) {
                 restartScript << "@echo off" << endl;
             }else{
                 restartScript << "#!/bin/bash" << endl << endl << "# Auto-generated script by Berk Server" << endl << endl; // Hopefully we arent in FreeBSD because they hate gnu (and therefore bash) for some reason
             }
-            restartScript << vectorToString(arguments);
+            restartScript << vectorToString(arguments) << endl;
 
         } else if (tolower(result[0]) == 'i') {
 
-          Settings::changeSetting("config/settings.json", "checks", "ignore-restart-script-not-found", true);
+          Settings::changeSetting("settings", "checks", "ignore-restart-script-not-found", true);
         
+        }else{
+            
         }
 
 

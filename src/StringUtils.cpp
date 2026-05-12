@@ -28,10 +28,11 @@ bool string_contains(string haystack, string needle) {
 }
 string vectorToString(vector<string> vec) {
 
+    vector<string> v = vec;
     string r;
-    r.append(vec.at(0));
-    r.erase(0);
-    for ( string element : vec) {
+    r.append(v.at(0));
+    v.erase(v.begin());
+    for ( string element : v) {
 
         r.append(" ");
         r.append(element);

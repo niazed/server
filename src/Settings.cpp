@@ -41,6 +41,7 @@ void Settings::changeSetting(string target, string layer, string setting, nlohma
     string newTarget = "config/";
     newTarget.append(target);
     newTarget.append(".json");
+    cout << "Looking for file " << newTarget << endl;
     json j = fromFile(newTarget);
     j[layer][setting] = replacement;
     ofstream out(newTarget, ofstream::trunc);

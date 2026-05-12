@@ -77,6 +77,7 @@ int main(int argc, char* argv[]) {
                 restartScript << "#!/bin/bash" << endl << endl << "# Auto-generated script by Berk Server" << endl << endl; // Hopefully we arent in FreeBSD because they hate gnu (and therefore bash) for some reason
             }
             restartScript << vectorToString(arguments) << endl;
+            restartScript.close();
 
         } else if (tolower(result[0]) == 'i') {
 
@@ -93,6 +94,7 @@ int main(int argc, char* argv[]) {
 
     // Servers
     thread http(startHTTP);
+    usleep(500);
     // Interactive shell
     cout << ">";
     // Command registry

@@ -26,3 +26,17 @@ bool string_contains(string haystack, string needle) {
     return haystack.find(needle) != string::npos;
 
 }
+string vectorToString(vector<string> vec) {
+
+    string r;
+    r.append(vec.at(0));
+    r.erase(0);
+    for ( string element : vec) {
+
+        r.append(" ");
+        r.append(element);
+
+    }
+    return r;
+
+}

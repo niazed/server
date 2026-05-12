@@ -7,16 +7,20 @@
 #define COMMAND_HPP
 
 class Command {
-    public:
+    private:
         std::string name;
         std::vector<std::string> aliases;
         bool async;
-
+        bool requireActiveServer;
+    public:
         virtual void run(std::vector<std::string> args, std::vector<std::string> flags);
 
         Command(std::string name, std::vector<std::string> aliases, bool async);
+        Command(std::string name, std::vector<std::string> aliases, bool async, bool requireActiveServer);
         std::string getName();
         std::vector<std::string> getAliases();
+        bool isAsync();
+        bool requiresServer();
 //   public:
 //     Command(const Command &) = default;
 //     Command(Command &&) = default;

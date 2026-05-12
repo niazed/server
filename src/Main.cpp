@@ -1,14 +1,19 @@
+#include <cctype>
 #include <iostream>
 #include "FSUtils.hpp"
 #include "HTTPServer.hpp"
 #include <bits/stdc++.h>
+#include "json.hpp"
+#include <ostream>
 #include <version.h>
 #include <gcrypt.h>
+#include "Settings.hpp"
 #include "StringUtils.hpp"
 #include "Command.hpp"
 #include "AddUserCommand.hpp"
 using namespace std;
 using namespace std::filesystem;
+using json = nlohmann::json;
 void startHTTP() {
 
     express::Express app;
@@ -17,13 +22,70 @@ void startHTTP() {
 }
 
 int main(int argc, char* argv[]) {
-
     system("echo BERK | figlet"); // I should integrate this so if the user doesn't have this installed
     cout << PROJECT_TITLE << ' ' << PROJECT_VERSION << " (build " << PROJECT_BUILD_NO << ")"<< endl;
+    cout << "Parsing arguments..." << endl;
 
-    cout << "Checking for config directory's existence... " << endl;
+    // Source - https://stackoverflow.com/a/6361621
+    // Posted by fredoverflow
+    // Retrieved 2026-05-12, License - CC BY-SA 3.0
+
+    vector<string> arguments(argv + 1, argv + argc);
+
+    cout << "Checking for filesystem..." << endl;
     createDirIfNotExists("config");
-    createDirIfNotExists("sdb");
+    if(!fileExists("config/settings.json")) {
+        json j = Settings::getDefaultSettings();
+        ofstream defaultSettings("config/settings.json");
+        defaultSettings << j;
+
+    }
+    createDirIfNotExists("berk");
+    createDirIfNotExists("berk/messages");
+    createDirIfNotExists("berk/images");
+    // I thought i already coded this, and i did, but my Artix broke after a kernel update, and i lost all the code, so if this code sucks its because i dont wanna do it again
+    createDirIfNotExists("scripts");
+    string target="restart";
+    bool useEchoOFF = false;
+    #ifdef WIN32
+        target.append(".bat");
+        useEchoOFF = true;
+    #endif
+    #ifdef UNIX
+        target.append(".sh");
+    #endif
+    if (target == "restart") {
+
+        cout << "what" << endl; // theoretically dead code, unless they are running TempleOS which from what i remember cant even connect to the internet so this would never reach it
+
+    }
+    string yeah = "scripts/";
+    yeah.append(target);
+    ofstream restartScript(yeah);
+    if(!restartScript.is_open()) {
+
+        cout << "[WARN] You do not have a " << target << ", would you like to create one using the arguments you passed on here? You can ignore this check by entering 'i' to turn on 'ignore-restart-script-not-found' [y/N/i] ";
+        string result;
+        cin >> result;
+        if(tolower(result[0]) == 'y') {
+
+            if(useEchoOFF) {
+                restartScript << "@echo off" << endl;
+            }else{
+                restartScript << "#!/bin/bash" << endl << endl << "# Auto-generated script by Berk Server" << endl << endl; // Hopefully we arent in FreeBSD because they hate gnu (and therefore bash) for some reason
+            }
+            restartScript << vectorToString(arguments);
+
+        } else if (tolower(result[0]) == 'i') {
+
+          Settings::changeSetting("config/settings.json", "checks", "ignore-restart-script-not-found", true);
+        
+        }
+
+
+    }
+
+    
 
     // Servers
     thread http(startHTTP);

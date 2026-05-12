@@ -2,6 +2,7 @@
 #include <vector>
 
 using namespace std;
+// WARNING: THIS COMMAND IS NOT BUILT YET, I DON'T KNOW HOW TO USE MY OWN CODE
 class AddUserCommand : Command {
 
 

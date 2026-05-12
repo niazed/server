@@ -10,6 +10,16 @@ Command::Command(string name, vector<string> aliases, bool async) {
     this->name = name;
     this->aliases = aliases;
     this->async = async;
+    this->requireActiveServer = false;
+
+
+}
+Command::Command(string name, vector<string> aliases, bool async, bool requireActiveServer) {
+
+    this->name = name;
+    this->aliases = aliases;
+    this->async = async;
+    this->requireActiveServer = requireActiveServer;
 
 
 }
@@ -22,5 +32,17 @@ string Command::getName() {
 vector<string> Command::getAliases() {
 
     return this->aliases;
+
+}
+
+bool Command::isAsync() {
+
+    return this->async;
+
+}
+
+bool Command::requiresServer() {
+
+    return this->requireActiveServer;
 
 }

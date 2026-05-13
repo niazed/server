@@ -11,7 +11,7 @@
 /**
  * @todo write docs
  */
-static class CommandRegistry
+class CommandRegistry
 {
 private:
     std::vector<std::unique_ptr<Command>> commands;

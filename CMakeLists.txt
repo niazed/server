@@ -25,6 +25,8 @@ add_executable(BerkServer
     src/Settings.cpp
     src/Settings.hpp
     src/Attachment.hpp
+    src/Endpoints.cpp
+    src/Endpoints.hpp
     #
     # Uncomment this when it works
     # src/AddUserCommand.hpp
@@ -42,7 +44,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED On)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 # flags to compiler
-set(CMAKE_CXX_FLAGS "-Wall -Wno-error -Wextra -Wunused-parameter -Wreturn-type ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-Wall -Wno-error -Wextra -Wunused-parameter -Wreturn-type -Wmissing-declarations ${CMAKE_CXX_FLAGS}")
 
 # shared
 find_package(SQLite3 REQUIRED)

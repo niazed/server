@@ -1,4 +1,3 @@
-#include <cctype>
 #include <iostream>
 #include "FSUtils.hpp"
 #include "HTTPServer.hpp"
@@ -106,7 +105,6 @@ int main(int argc, char* argv[]) {
     while(commandLoop) {
 
         string command;
-        cout << ">";
         cin >> command;
         vector<string> args = split_string(command, ' ');
         string commandName = args.at(0);

@@ -9,17 +9,15 @@
 #include "Settings.hpp"
 #include "StringUtils.hpp"
 #include "Command.hpp"
-#include "AddUserCommand.hpp"
+// #include "AddUserCommand.hpp"
 using namespace std;
 using namespace std::filesystem;
 using json = nlohmann::json;
-void startHTTP() {
+void startServer() {
 
-    express::Express app;
-    startupHTTP(app);
+  // do stuff
 
 }
-
 int main(int argc, char* argv[]) {
     system("echo BERK | figlet"); // I should integrate this so if the user doesn't have this installed
     cout << PROJECT_TITLE << ' ' << PROJECT_VERSION << " (build " << PROJECT_BUILD_NO << ")"<< endl;
@@ -91,9 +89,10 @@ int main(int argc, char* argv[]) {
     
 
     // Servers
-    thread http(startHTTP);
+    thread http(startServer);
     usleep(500);
     // Interactive shell
+    cout << endl;
     cout << ">";
     // Command registry
     // vector<Command> commands;

@@ -48,8 +48,6 @@ set(CMAKE_CXX_FLAGS "-Wall -Wno-error -Wextra -Wunused-parameter -Wreturn-type -
 
 # shared
 find_package(SQLite3 REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-target_link_libraries(BerkServer PRIVATE Qt6::Core)
  # /cmake dir
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")

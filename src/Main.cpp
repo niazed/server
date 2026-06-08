@@ -73,7 +73,6 @@ int main(int argc, char* argv[]) {
             if(useEchoOFF) {
                 restartScript << "@echo off" << endl;
             }else{
-                restartScript << "#!/bin/bash" << endl << endl << "# Auto-generated script by Berk Server" << endl << endl; // Hopefully we arent in FreeBSD because they hate gnu (and therefore bash) for some reason
             }
             restartScript << vectorToString(arguments) << endl;
             restartScript.close();
